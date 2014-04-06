@@ -1,0 +1,28 @@
+name:                classical-ciphers
+version:             0.0
+synopsis:            Haskell implemention of classical ciphers (Foursquare, Playfair, Vigenère, etc)
+homepage:            https://github.com/Changaco/haskell-classical-ciphers
+license:             LGPL-3
+author:              Changaco
+maintainer:          changaco@changaco.oy.lc
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+
+library
+    build-depends: base >= 4
+                 , basic-prelude
+                 , bytestring
+                 , containers
+                 , vector
+    default-language: Haskell2010
+    exposed-modules: ClassicalCiphers
+                     ClassicalCiphers.Common
+                     ClassicalCiphers.Foursquare
+                     ClassicalCiphers.Twosquare
+    default-extensions: NoImplicitPrelude
+                        OverloadedStrings
+    ghc-options: -Wall -O2
+    hs-source-dirs: src
+    other-modules: Utils
