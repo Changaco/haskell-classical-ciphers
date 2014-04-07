@@ -11,6 +11,18 @@ import qualified Data.Vector.Mutable as MV
 import Utils (nubOrd)
 
 
+class Cipher c where
+    type DecipherKeyType c
+    type EncipherKeyType c
+    type KeysType c a
+    cipherName :: c -> Text
+    cipherNumberOfKeys :: c -> Int
+    makeDecipherKey :: c -> ByteString -> DecipherKeyType c
+    makeEncipherKey :: c -> ByteString -> EncipherKeyType c
+    decipher :: c -> KeysType c (DecipherKeyType c) -> String -> String
+    encipher :: c -> KeysType c (EncipherKeyType c) -> String -> String
+
+
 type Square = ByteString
 type SquareMap = Vector Int
 
