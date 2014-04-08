@@ -38,8 +38,8 @@ decipherNoQ _ [_] = error "foursquare can only decipher even-lengthed strings"
 
 encipherNoQ :: (Square, Square) -> String -> String
 encipherNoQ (k1, k2) (i1:i2:rest) =
-    let (row1, col1) = (ord i1 - 65) `divMod` 5
-        (row2, col2) = (ord i2 - 65) `divMod` 5
+    let (row1, col1) = (alphabetNoQMap ! (ord i1 - 65)) `divMod` 5
+        (row2, col2) = (alphabetNoQMap ! (ord i2 - 65)) `divMod` 5
         o1 = C.index k1 (5 * row1 + col2)
         o2 = C.index k2 (5 * row2 + col1)
     in  o1 : o2 : (encipherNoQ (k1, k2) rest)

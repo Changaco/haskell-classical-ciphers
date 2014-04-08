@@ -31,6 +31,10 @@ alphabetNoQ :: Square
 alphabetNoQ = "ABCDEFGHIJKLMNOPRSTUVWXYZ"
 
 
+alphabetNoQMap :: SquareMap
+alphabetNoQMap = genSquareMap alphabetNoQ
+
+
 filterNonAlpha :: ByteString -> ByteString
 filterNonAlpha = C.filter (\c -> c>='A' && c<='Z') . C.map toUpper
 
