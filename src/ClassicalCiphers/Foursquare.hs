@@ -21,6 +21,8 @@ instance Cipher FoursquareNoQ where
     cipherNumberOfKeys _ = 2
     makeDecipherKey _ = genSquareMap . genSquareNoQ
     makeEncipherKey _ = genSquareNoQ
+    makeDecipherKeys c (k1, k2) = (makeDecipherKey c k1, makeDecipherKey c k2)
+    makeEncipherKeys c (k1, k2) = (makeEncipherKey c k1, makeEncipherKey c k2)
     decipher _ = decipherNoQ
     encipher _ = encipherNoQ
 

@@ -22,6 +22,8 @@ instance Cipher TwosquareHNoQ where
     cipherNumberOfKeys _ = 2
     makeDecipherKey _ = genSquareNoQ
     makeEncipherKey _ = genSquareNoQ
+    makeDecipherKeys c (k1, k2) = (makeDecipherKey c k1, makeDecipherKey c k2)
+    makeEncipherKeys c (k1, k2) = (makeEncipherKey c k1, makeEncipherKey c k2)
     decipher _ = twosquareNoQ Horizontal
     encipher _ = twosquareNoQ Horizontal
 
@@ -35,6 +37,8 @@ instance Cipher TwosquareVNoQ where
     cipherNumberOfKeys _ = 2
     makeDecipherKey _ = genSquareNoQ
     makeEncipherKey _ = genSquareNoQ
+    makeDecipherKeys c (k1, k2) = (makeDecipherKey c k1, makeDecipherKey c k2)
+    makeEncipherKeys c (k1, k2) = (makeEncipherKey c k1, makeEncipherKey c k2)
     decipher _ = twosquareNoQ Vertical
     encipher _ = twosquareNoQ Vertical
 

@@ -17,8 +17,10 @@ class Cipher c where
     type KeysType c a
     cipherName :: c -> Text
     cipherNumberOfKeys :: c -> Int
-    makeDecipherKey :: c -> ByteString -> DecipherKeyType c
-    makeEncipherKey :: c -> ByteString -> EncipherKeyType c
+    makeDecipherKey :: c -> String -> DecipherKeyType c
+    makeEncipherKey :: c -> String -> EncipherKeyType c
+    makeDecipherKeys :: c -> KeysType c String -> KeysType c (DecipherKeyType c)
+    makeEncipherKeys :: c -> KeysType c String -> KeysType c (EncipherKeyType c)
     decipher :: c -> KeysType c (DecipherKeyType c) -> String -> String
     encipher :: c -> KeysType c (EncipherKeyType c) -> String -> String
 
@@ -35,8 +37,16 @@ alphabetNoQMap :: SquareMap
 alphabetNoQMap = genSquareMap alphabetNoQ
 
 
-filterNonAlpha :: ByteString -> ByteString
-filterNonAlpha = C.filter (\c -> c>='A' && c<='Z') . C.map toUpper
+decipher_ :: Cipher c => c -> KeysType c String -> String -> String
+decipher_ c k = decipher c (makeDecipherKeys c k) . filterNonAlpha
+
+
+encipher_ :: Cipher c => c -> KeysType c String -> String -> String
+encipher_ c k = encipher c (makeEncipherKeys c k) . filterNonAlpha
+
+
+filterNonAlpha :: String -> String
+filterNonAlpha = filter (\c -> c>='A' && c<='Z') . map toUpper
 
 
 genSquareMap :: Square -> SquareMap
@@ -48,5 +58,5 @@ genSquareMap square = runST $ do
     freeze mv
 
 
-genSquareNoQ :: ByteString -> Square
-genSquareNoQ = C.pack . nubOrd . filter (/='Q') . (++['A'..'Z']) . C.unpack . filterNonAlpha
+genSquareNoQ :: String -> Square
+genSquareNoQ = C.pack . nubOrd . filter (/='Q') . (++['A'..'Z']) . filterNonAlpha

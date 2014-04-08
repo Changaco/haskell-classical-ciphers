@@ -27,3 +27,16 @@ library
     ghc-options: -Wall -O2
     hs-source-dirs: src
     other-modules: Utils
+
+
+test-suite test
+    build-depends: base >= 4
+                 , classical-ciphers
+                 , containers
+                 , hspec
+    default-extensions: OverloadedStrings
+    default-language: Haskell2010
+    ghc-options: -Wall
+    hs-source-dirs: test
+    main-is: Spec.hs
+    type: exitcode-stdio-1.0
