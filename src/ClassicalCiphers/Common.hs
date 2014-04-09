@@ -29,6 +29,11 @@ type Square = ByteString
 type SquareMap = Vector Int
 
 
+(%) :: Integral a => a -> a -> a
+(%) = mod
+infixl 7 %
+
+
 alphabetNoQ :: Square
 alphabetNoQ = "ABCDEFGHIJKLMNOPRSTUVWXYZ"
 

@@ -20,6 +20,7 @@ library
     exposed-modules: ClassicalCiphers
                      ClassicalCiphers.Common
                      ClassicalCiphers.Foursquare
+                     ClassicalCiphers.Playfair
                      ClassicalCiphers.Twosquare
     default-extensions: NoImplicitPrelude
                         OverloadedStrings
