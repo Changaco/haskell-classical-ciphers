@@ -22,6 +22,7 @@ library
                      ClassicalCiphers.Foursquare
                      ClassicalCiphers.Playfair
                      ClassicalCiphers.Twosquare
+                     ClassicalCiphers.Vigenere
     default-extensions: NoImplicitPrelude
                         OverloadedStrings
                         TypeFamilies
